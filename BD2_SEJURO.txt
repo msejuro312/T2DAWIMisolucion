@@ -1,0 +1,44 @@
+CREATE DATABASE BD2_SEJURO;
+USE BD_SEJURO;
+
+CREATE OR ALTER TABLE tipo_habitacion (
+	cod_tipo INT PRIMARY KEY AUTO INCREMENT,
+	nom_tipo_habitacion VARCHAR(100) NOT NULL,
+	precio DECIMAL (10,2) NOT NULL
+);
+
+CREATE OR ALTER TABLE cliente (
+	id_cliente INT PRIMARY KEY AUTO INCREMENT,
+	nom_cliente VARCHAR(100) NOT NULL,
+	);
+
+CREATE OR ALTER TABLE reserva (
+	num_reserva INT PRIMARY KEY AUTO INCREMENT,
+	fecha_reserva DATE NOT NULL,
+	id_cliente INT NOT NULL,
+	cod_tipo INT NOT NULL,
+	estado CHAR(1) NOT NULL,
+	FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
+	FOREIGN KEY (cod_tipo) REFERENCES tipo_habitacion(cod_tipo),
+	);
+
+--DATOS DE PRUEBA
+
+INSERT INTO tipo_habitacion (nom_tipo_habitacion, precio) VALUES
+('Simple',10.00),
+('Doble',20.00),
+('Matrimonial',30.00);
+
+INSERT INTO cliente (nom_cliente) VALUES
+('Pancho Fierro'),
+('Juan Perez'),
+('Maria Magdalena');
+
+INSERT INTO reserva(fecha_reserva,id_cliente,cod_tipo,estado) VALUES
+('2026-08-01',1,1,'A'),
+('2026-08-02',2,2,'A'),
+('2026-08-03',3,3,'I')
+
+
+
+
